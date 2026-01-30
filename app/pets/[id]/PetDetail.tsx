@@ -19,6 +19,8 @@ export default function PetDetail({ pet: initialPet }: PetDetailProps) {
   const [logType, setLogType] = useState<LogType>('feeding')
   const [logContent, setLogContent] = useState('')
   const [loading, setLoading] = useState(false)
+  const [editingLogId, setEditingLogId] = useState<string | null>(null)
+  const [editContent, setEditContent] = useState('')
 
   const handleQuickFeed = async () => {
     setLoading(true)
@@ -70,6 +72,56 @@ export default function PetDetail({ pet: initialPet }: PetDetailProps) {
     }
   }
 
+  const handleDeleteLog = async (logId: string) => {
+    if (!confirm('Are you sure you want to delete this log entry?')) {
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/pets/${pet.id}/logs/${logId}`, {
+        method: 'DELETE',
+      })
+
+      if (response.ok) {
+        const updatedPet = await response.json()
+        setPet(updatedPet)
+      }
+    } catch (error) {
+      console.error('Failed to delete log')
+    }
+  }
+
+  const handleEditLog = (logId: string, currentContent: string) => {
+    setEditingLogId(logId)
+    setEditContent(currentContent)
+  }
+
+  const handleSaveEdit = async (logId: string) => {
+    if (!editContent.trim()) return
+
+    try {
+      const response = await fetch(`/api/pets/${pet.id}/logs/${logId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: editContent }),
+      })
+
+      if (response.ok) {
+        const updatedPet = await response.json()
+        setPet(updatedPet)
+        setEditingLogId(null)
+        setEditContent('')
+      }
+    } catch (error) {
+      console.error('Failed to update log')
+    }
+  }
+
+  const handleCancelEdit = () => {
+    setEditingLogId(null)
+    setEditContent('')
+  }
+
   const handleDelete = async () => {
     if (!confirm(`Are you sure you want to delete ${pet.name}?`)) {
       return
@@ -91,12 +143,14 @@ export default function PetDetail({ pet: initialPet }: PetDetailProps) {
 
   const formatDate = (isoString: string) => {
     const date = new Date(isoString)
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    }).format(date)
+    const month = date.toLocaleString('en-US', { month: 'short' })
+    const day = date.getDate()
+    const hours = date.getHours()
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    const ampm = hours >= 12 ? 'PM' : 'AM'
+    const displayHours = hours % 12 || 12
+    
+    return `${month} ${day} at ${displayHours}:${minutes} ${ampm}`
   }
 
   return (
@@ -124,7 +178,7 @@ export default function PetDetail({ pet: initialPet }: PetDetailProps) {
           variant="secondary"
           fullWidth
         >
-          {showLogForm ? 'Cancel' : 'Add Log'}
+          {showLogForm ? 'Cancel' : 'Add Journal Entry'}
         </Button>
       </div>
 
@@ -177,12 +231,63 @@ export default function PetDetail({ pet: initialPet }: PetDetailProps) {
             {pet.logs.map((log) => (
               <div key={log.id} className="timeline-item">
                 <div className="timeline-item__header">
-                  <span className={`timeline-item__type timeline-item__type--${log.type}`}>
-                    {log.type}
-                  </span>
-                  <span className="timeline-item__date">{formatDate(log.timestamp)}</span>
+                  <div className="timeline-item__header-left">
+                    <span className={`timeline-item__type timeline-item__type--${log.type}`}>
+                      {log.type}
+                    </span>
+                    <span className="timeline-item__date">{formatDate(log.timestamp)}</span>
+                  </div>
+                  <div className="timeline-item__actions">
+                    <button
+                      onClick={() => handleEditLog(log.id, log.content)}
+                      className="timeline-item__action-button timeline-item__action-button--edit"
+                      aria-label="Edit log"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => handleDeleteLog(log.id)}
+                      className="timeline-item__action-button timeline-item__action-button--delete"
+                      aria-label="Delete log"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        <line x1="10" y1="11" x2="10" y2="17" />
+                        <line x1="14" y1="11" x2="14" y2="17" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-                <p className="timeline-item__content">{log.content}</p>
+                {editingLogId === log.id ? (
+                  <div className="timeline-item__edit-form">
+                    <textarea
+                      value={editContent}
+                      onChange={(e) => setEditContent(e.target.value)}
+                      className="timeline-item__edit-textarea"
+                      rows={3}
+                    />
+                    <div className="timeline-item__edit-actions">
+                      <button
+                        onClick={() => handleSaveEdit(log.id)}
+                        className="timeline-item__edit-button timeline-item__edit-button--save"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={handleCancelEdit}
+                        className="timeline-item__edit-button timeline-item__edit-button--cancel"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="timeline-item__content">{log.content}</p>
+                )}
               </div>
             ))}
           </div>
