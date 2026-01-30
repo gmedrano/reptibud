@@ -1,0 +1,79 @@
+.pets-page {
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  padding: var(--spacing-lg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pets-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.pets-page__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.pets-page__actions {
+  margin-bottom: var(--spacing-lg);
+}
+
+.pets-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.pet-card {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.pet-card__image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.pet-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pet-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pet-card__species {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pet-card__logs {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .pets-page {
+    padding: var(--spacing-md);
+  }
+
+  .pets-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}
