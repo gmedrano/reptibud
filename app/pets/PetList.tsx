@@ -20,11 +20,21 @@ export default function PetList({ pets }: PetListProps) {
     router.refresh()
   }
 
+  const getGreeting = () => {
+    const hour = new Date().getHours()
+    if (hour < 12) return 'Good Morning'
+    if (hour < 18) return 'Good Afternoon'
+    return 'Good Evening'
+  }
+
   if (pets.length === 0) {
     return (
       <div className="pets-page">
         <div className="pets-page__header">
-          <h1 className="pets-page__title">My Pets</h1>
+          <div>
+            <p className="pets-page__greeting">{getGreeting()}</p>
+            <h1 className="pets-page__title">My Pets</h1>
+          </div>
           <Button onClick={handleLogout} variant="secondary">
             Logout
           </Button>
@@ -44,7 +54,10 @@ export default function PetList({ pets }: PetListProps) {
   return (
     <div className="pets-page">
       <div className="pets-page__header">
-        <h1 className="pets-page__title">My Pets</h1>
+        <div>
+          <p className="pets-page__greeting">{getGreeting()}</p>
+          <h1 className="pets-page__title">My Pets</h1>
+        </div>
         <Button onClick={handleLogout} variant="secondary">
           Logout
         </Button>

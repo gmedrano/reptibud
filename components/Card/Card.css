@@ -1,25 +1,26 @@
 .card {
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--color-surface);
+  border: none;
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
 }
 
 .card--clickable {
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-background);
+  transition: all 0.3s ease;
+  border: none;
+  background-color: var(--color-surface);
 }
 
 .card--clickable:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
 }
 
 .card--clickable:active {
-  transform: scale(0.98);
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
 }

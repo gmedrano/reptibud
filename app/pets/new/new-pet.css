@@ -1,20 +1,20 @@
 .new-pet-page {
   min-height: 100vh;
-  background-color: var(--color-surface);
-  padding: var(--spacing-lg);
+  background-color: var(--color-background);
+  padding: var(--spacing-xl);
 }
 
 .new-pet-page__container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  background-color: var(--color-background);
-  padding: var(--spacing-xl);
-  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-md);
 }
 
 .new-pet-page__header {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
 }
 
 .new-pet-page__back {
@@ -22,19 +22,20 @@
   border: none;
   color: var(--color-primary);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   padding: var(--spacing-sm) 0;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
   display: inline-block;
+  transition: all 0.2s ease;
 }
 
 .new-pet-page__back:hover {
-  text-decoration: underline;
+  color: var(--color-primary-dark);
 }
 
 .new-pet-page__title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
 }
@@ -42,16 +43,17 @@
 .new-pet-page__form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
 }
 
 .new-pet-page__error {
-  padding: var(--spacing-md);
-  background-color: #ffebee;
-  border: 1px solid var(--color-error);
-  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  background-color: #FEE2E2;
+  border: 2px solid var(--color-error);
+  border-radius: var(--border-radius-lg);
   color: var(--color-error);
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .new-pet-page__actions {

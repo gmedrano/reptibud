@@ -1,8 +1,8 @@
 .pets-page {
   min-height: 100vh;
-  background-color: var(--color-surface);
-  padding: var(--spacing-lg);
-  max-width: 800px;
+  background-color: var(--color-background);
+  padding: var(--spacing-xl);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -10,60 +10,70 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.pets-page__greeting {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
 }
 
 .pets-page__title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
 }
 
 .pets-page__actions {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
 .pets-page__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
 }
 
 .pet-card {
   display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
-  align-items: center;
+  padding: var(--spacing-xl);
+  min-height: 200px;
 }
 
 .pet-card__image {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--border-radius-md);
+  width: 100%;
+  height: 180px;
+  border-radius: var(--border-radius-lg);
   object-fit: cover;
-  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .pet-card__content {
   flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .pet-card__name {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
 }
 
 .pet-card__species {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xs);
 }
 
 .pet-card__logs {
   font-size: var(--font-size-sm);
   color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
 }
 
 @media (max-width: 768px) {
@@ -75,5 +85,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-md);
+  }
+
+  .pets-page__list {
+    grid-template-columns: 1fr;
   }
 }

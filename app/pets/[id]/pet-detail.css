@@ -1,13 +1,13 @@
 .pet-detail {
   min-height: 100vh;
-  background-color: var(--color-surface);
-  padding: var(--spacing-lg);
-  max-width: 800px;
+  background-color: var(--color-background);
+  padding: var(--spacing-xl);
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .pet-detail__header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
 .pet-detail__back {
@@ -15,42 +15,46 @@
   border: none;
   color: var(--color-primary);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   padding: var(--spacing-sm) 0;
+  transition: all 0.2s ease;
 }
 
 .pet-detail__back:hover {
-  text-decoration: underline;
+  color: var(--color-primary-dark);
 }
 
 .pet-detail__info {
-  background-color: var(--color-background);
-  padding: var(--spacing-xl);
-  border-radius: var(--border-radius-lg);
+  background: linear-gradient(135deg, var(--color-surface-blue) 0%, var(--color-surface) 100%);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-xl);
   text-align: center;
-  margin-bottom: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
 }
 
 .pet-detail__image {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto var(--spacing-md);
+  margin: 0 auto var(--spacing-lg);
+  border: 4px solid white;
+  box-shadow: var(--shadow-lg);
 }
 
 .pet-detail__name {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
 }
 
 .pet-detail__species {
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
 }
 
 .pet-detail__actions {
@@ -60,12 +64,30 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.pet-detail__log-form {
-  background-color: var(--color-background);
-  padding: var(--spacing-lg);
+.pet-detail__actions .button {
+  min-height: 120px;
+  height: 120px;
   border-radius: var(--border-radius-lg);
-  margin-bottom: var(--spacing-lg);
-  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+}
+
+.pet-detail__actions .button svg {
+  margin-right: 0 !important;
+  width: 32px;
+  height: 32px;
+}
+
+.pet-detail__log-form {
+  background-color: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -82,45 +104,59 @@
 .pet-detail__log-type-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
 }
 
 .pet-detail__log-type-button {
-  padding: var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-md);
-  background-color: var(--color-background);
+  padding: var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
   color: var(--color-text-primary);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.2s ease;
   text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 100px;
+  height: 100px;
+}
+
+.pet-detail__log-type-button svg {
+  width: 28px;
+  height: 28px;
 }
 
 .pet-detail__log-type-button:hover {
   border-color: var(--color-primary);
+  background-color: var(--color-surface-orange);
 }
 
 .pet-detail__log-type-button--active {
   background-color: var(--color-primary);
   color: white;
   border-color: var(--color-primary);
-}
-
-.pet-detail__timeline {
-  background-color: var(--color-background);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
-  margin-bottom: var(--spacing-lg);
   box-shadow: var(--shadow-sm);
 }
 
+.pet-detail__timeline {
+  background-color: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
 .pet-detail__timeline-title {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
 }
 
 .pet-detail__timeline-list {
@@ -130,10 +166,16 @@
 }
 
 .timeline-item {
-  padding: var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-md);
-  background-color: var(--color-surface);
+  padding: var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.timeline-item:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .timeline-item__header {
@@ -187,26 +229,27 @@
 
 .timeline-item__type {
   display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
   text-transform: capitalize;
+  letter-spacing: 0.5px;
 }
 
 .timeline-item__type--feeding {
-  background-color: #e8f5e9;
+  background-color: #D1FAE5;
   color: var(--color-success);
 }
 
 .timeline-item__type--shedding {
-  background-color: #fff3e0;
-  color: #f57c00;
+  background-color: #FED7AA;
+  color: var(--color-warning);
 }
 
 .timeline-item__type--note {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: #DBEAFE;
+  color: var(--color-info);
 }
 
 .timeline-item__date {

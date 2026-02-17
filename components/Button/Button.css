@@ -2,15 +2,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-xl);
   border: none;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xl);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.2s ease;
-  min-height: 48px;
+  min-height: 52px;
   touch-action: manipulation;
+  box-shadow: var(--shadow-sm);
 }
 
 .button:disabled {
@@ -21,44 +22,54 @@
 .button--primary {
   background-color: var(--color-primary);
   color: white;
+  box-shadow: var(--shadow-md);
 }
 
 .button--primary:hover:not(:disabled) {
   background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
 }
 
 .button--primary:active:not(:disabled) {
   background-color: var(--color-primary-dark);
-  transform: scale(0.98);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .button--secondary {
   background-color: var(--color-surface);
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
+  box-shadow: none;
 }
 
 .button--secondary:hover:not(:disabled) {
-  background-color: var(--color-border);
+  background-color: var(--color-surface-blue);
+  border-color: var(--color-secondary);
 }
 
 .button--secondary:active:not(:disabled) {
-  background-color: var(--color-border);
+  background-color: var(--color-surface-blue);
   transform: scale(0.98);
 }
 
 .button--danger {
   background-color: var(--color-error);
   color: white;
+  box-shadow: var(--shadow-md);
 }
 
 .button--danger:hover:not(:disabled) {
-  background-color: #b71c1c;
+  background-color: #DC2626;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
 }
 
 .button--danger:active:not(:disabled) {
-  background-color: #b71c1c;
-  transform: scale(0.98);
+  background-color: #DC2626;
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .button--full-width {
