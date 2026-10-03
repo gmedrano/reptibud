@@ -1,5 +1,7 @@
 # ReptiBud - Reptile Care Logbook
 
+For current repository state and safe next actions, see [HANDOFF](HANDOFF.md).
+
 A mobile-first Next.js web application for tracking basic reptile care.
 
 ## Version 0.1 - Logbook Mode
